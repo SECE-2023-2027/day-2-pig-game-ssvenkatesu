@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dice Game</title>
+  <link rel="stylesheet" href="dicegame.css" />
+</head>
+<body>
+  <div class="container">
+    
+    <div class="player1">
+      <div>
+        <h1 class="innercontent">PLAYER 1</h1>
+        <p id="player1Turn" class="innercontent score">0</p>
+      </div>
+      <div class="currentContainer">
+        <p class="current">Current</p>
+        <p class="currentScore">0</p> 
+      </div>
+    </div>
+
+  
+    <img src="" alt="Dice" id="diceImg" class="dice" style="position:absolute; top:40%; left:50%; transform:translate(-50%, -50%); width:60px;" />
+
+   
+    <button style="position:absolute; top:25%; left:50%; transform:translateX(-50%); padding:10px 20px; border-radius:20px; border:none; background:white;">🔄 NEW GAME</button>
+    <button style="position:absolute; top:65%; left:50%; transform:translateX(-50%); padding:10px 20px; border-radius:20px; border:none; background:white;">🎲 ROLL DICE</button>
+    <button style="position:absolute; top:75%; left:50%; transform:translateX(-50%); padding:10px 20px; border-radius:20px; border:none; background:white;">📥 HOLD</button>
+
+    <div class="player2">
+      <div>
+        <h1 class="innercontent">PLAYER 1</h1>
+        <p id="player2Turn" class="innercontent score">0</p>
+      </div>
+      <div class="currentContainer cc">
+        <p class="current c1">Current</p>
+        <p class="currentScore cs1">0</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="dicegame.js" defer></script>
+</body>
+</html>

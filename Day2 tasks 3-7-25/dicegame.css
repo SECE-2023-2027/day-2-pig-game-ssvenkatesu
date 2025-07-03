@@ -1,0 +1,68 @@
+
+*{
+    margin:0px;
+}
+.container{
+    background-color:rgb(0, 255, 255);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player1{
+    background-color: rgb(208, 241, 241);
+    color:black;
+    height:70vh;
+    width: 25vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding:40px;
+    
+}
+.player2{
+    background-color: rgb(88, 113, 113);
+    height:70vh;
+    width: 25vw;
+    text-align: center;
+    color:azure;
+     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding:40px;
+    
+}
+.innercontent{
+    padding:35px;
+
+}
+.score{
+    font-size: 50px;
+}
+.currentContainer{
+    width:10vw;
+    height:15vh;
+    
+    background-color: rgb(88, 113, 113);
+}
+.cc{
+    background-color: azure;
+}
+.current{
+    color:white;
+    padding:20px;
+    font-size: 20px;
+}
+.c1{
+    color:black;
+}
+.currentScore{
+    color:white;
+    font-size: 25px;
+}
+.cs1{
+    color: black;
+}
