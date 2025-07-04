@@ -1,78 +1,86 @@
-const diceImg = document.getElementById('diceImg');
-const player1ScoreEl = document.getElementById('player1Turn');
-const player2ScoreEl = document.getElementById('player2Turn');
-const current1El = document.querySelector('.currentScore');
-const current2El = document.querySelector('.cs1');
+const d = document.getElementById('diceImg');
+const p1 = document.getElementById('player1Turn');
+const p2 = document.getElementById('player2Turn');
+const c1 = document.querySelector('.currentScore');
+const c2 = document.querySelector('.cs1');
+const n = document.querySelectorAll('button')[0];
+const r = document.querySelectorAll('button')[1];
+const h = document.querySelectorAll('button')[2];
+const t1 = document.querySelector('.player1');
+const t2 = document.querySelector('.player2');
 
-const newGameBtn = document.querySelectorAll('button')[0];
-const rollBtn = document.querySelectorAll('button')[1];
-const holdBtn = document.querySelectorAll('button')[2];
+let s1, s2, cs, a, play;
 
-const changeTheme1=document.querySelector(".player1")
-const changeTheme2=document.querySelector(".player2")
-let scores, currentScore, activePlayer, playing;
+function g(x) {
+  switch (x) {
+    case 'i':
+      s1 = 0;
+      s2 = 0;
+      cs = 0;
+      a = 1;
+      play = true;
+      p1.textContent = 0;
+      p2.textContent = 0;
+      c1.textContent = 0;
+      c2.textContent = 0;
+      d.src = 'dice1.jpg';
+      t1.style.backgroundColor = '';
+      t2.style.backgroundColor = '';
+      break;
 
-const init = () => {
-  scores = [0, 0];
-  currentScore = 0;
-  activePlayer = 0;
-  playing = true;
+    case 'r':
+      if (!play) break;
+      const z = Math.trunc(Math.random() * 6) + 1;
+      d.src = `dice${z}.jpg`;
+      if (z !== 1) {
+        cs += z;
+        switch (a) {
+          case 1: c1.textContent = cs; break;
+          case 2: c2.textContent = cs; break;
+        }
+      } else {
+        switch (a) {
+          case 1: c1.textContent = 0; break;
+          case 2: c2.textContent = 0; break;
+        }
+        cs = 0;
+        a = a === 1 ? 2 : 1;
+      }
+      break;
 
-  player1ScoreEl.textContent = 0;
-  player2ScoreEl.textContent = 0;
-  current1El.textContent = 0;
-  current2El.textContent = 0;
-  diceImg.src = 'dice1.jpg';
-  changeTheme1.style.backgroundColor = '';
-  changeTheme2.style.backgroundColor = '';
- 
-  
-};
-
-const switchPlayer = () => {
-  document.querySelectorAll('.currentScore')[activePlayer].textContent = 0;
-  currentScore = 0;
-  activePlayer = activePlayer === 0 ? 1 : 0;
-};
-
-rollBtn.addEventListener('click', () => {
-  if (playing) {
-    const dice = Math.trunc(Math.random() * 6) + 1;
-    diceImg.src = `dice${dice}.jpg`;
-
-    if (dice !== 1) {
-      currentScore += dice;
-      document.querySelectorAll('.currentScore')[activePlayer].textContent = currentScore;
-    } else {
-      switchPlayer();
-    }
+    case 'h':
+      if (!play) break;
+      switch (a) {
+        case 1:
+          s1 += cs;
+          p1.textContent = s1;
+          if (s1 >= 20) {
+            t1.style.backgroundColor = 'lightblue';
+            play = false;
+            break;
+          }
+          c1.textContent = 0;
+          a = 2;
+          break;
+        case 2:
+          s2 += cs;
+          p2.textContent = s2;
+          if (s2 >= 20) {
+            t2.style.backgroundColor = 'lightblue';
+            play = false;
+            break;
+          }
+          c2.textContent = 0;
+          a = 1;
+          break;
+      }
+      cs = 0;
+      break;
   }
-});
+}
 
-holdBtn.addEventListener('click', () => {
-  if (playing) {
-    scores[activePlayer] += currentScore;
-    if (activePlayer === 0) {
-      player1ScoreEl.textContent = scores[0];
-    } else {
-      player2ScoreEl.textContent = scores[1];
-    }
+n.addEventListener('click', () => g('i'));
+r.addEventListener('click', () => g('r'));
+h.addEventListener('click', () => g('h'));
 
-    if (scores[activePlayer] >= 20) {
-       if(activePlayer===0){
-        changeTheme1.style.backgroundColor='lightblue';
-       }else if(activePlayer===1){
-        changeTheme2.style.backgroundColor='lightblue';
-       }
-      
-      
-      playing = false;
-    } else {
-      switchPlayer();
-    }
-  }
-});
-
-newGameBtn.addEventListener('click', init);
-
-init();
+g('i');
